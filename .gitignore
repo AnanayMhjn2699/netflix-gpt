@@ -1,5 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# for the time being stopping git from tracking
+*
+*/
 # dependencies
 /node_modules
 /.pnp
