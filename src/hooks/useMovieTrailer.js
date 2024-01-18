@@ -9,6 +9,7 @@ const useMovieTrailer = (movieId) => {
   const dispatch = useDispatch();
   //just checking once if the trailer data is already fetched and stored or not
   //and if it is already there then no need to do anything (see that in useEffect below)
+  //this is being done to save api call from being made un-necessarily
   const trailerVideo = useSelector((store) => store.movies.trailerVideo);
 
   const getMovieVideos = async () => {
