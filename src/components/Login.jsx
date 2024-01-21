@@ -28,7 +28,7 @@ const Login = () => {
     const message = checkValidData(email.current.value, password.current.value);
     setErrorMessage(message);
     if (message) return; //if msg is null means go forward and authenticate
-    //                      otherwise validate the email and/or password
+    //                      otherwise the email and/or password was not valid
 
     if (!isSignInForm) {
       // Sign Up Logic
