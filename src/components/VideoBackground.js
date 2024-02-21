@@ -6,7 +6,8 @@ const VideoBackground = ({ movieId }) => {
   const trailerVideo = useSelector((store) => store.movies?.trailerVideo);
 
   //this custom hook will fetch the video data from tmdb video api and also filter that data to give
-  //us the trailer video and updating the store with trailer video data
+  //us the trailer video and updating the store with trailer video data, so that the data can be accessed
+  //from store using useSelector hook in line 6.
   useMovieTrailer(movieId);
 
   return (
