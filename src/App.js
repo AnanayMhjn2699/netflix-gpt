@@ -4,7 +4,7 @@ import appStore from "./utils/appStore";
 
 function App() {
   return (
-    <div className="App">
+    <div className="w-[100vw] h-[100vh] ">
       <Provider store={appStore}>
         <Body />
       </Provider>
