@@ -52,7 +52,7 @@ const PlayTrailer = () => {
   );
 
   return (
-    <div className="h-screen ">
+    <div className="h-[100vh] ">
       {/* this is the embed code from youtube to get video of particular key(this is unique to every vido)
      inside my component */}
       <iframe

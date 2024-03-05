@@ -29,6 +29,11 @@ const movieSlice = createSlice({
     addClickedMovieId: (state, action) => {
       state.clickedMovieId = action.payload;
     },
+    removeClickedMovieId: (state) => {
+      return {
+        clickedMovieId: "",
+      };
+    },
   },
 });
 
@@ -41,4 +46,5 @@ export const {
   addTopRatedMovies,
   addClickedMovieTrailer,
   addClickedMovieId,
+  removeClickedMovieId,
 } = movieSlice.actions;
