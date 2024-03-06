@@ -101,9 +101,21 @@ const Login = () => {
         onSubmit={(e) => e.preventDefault()}
         className="w-full md:w-3/12 absolute p-4 bg-black my-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80"
       >
-        <h1 className="font-bold text-3xl py-3">
-          {isSignInForm ? "Sign In" : "Sign Up"}
-        </h1>
+        <div className="flex justify-between">
+          <h1 className="font-bold text-3xl py-3">
+            {isSignInForm ? "Sign In" : "Sign Up"}
+          </h1>
+          {/* <span
+            className="py-5 hover:text-yellow-100 cursor-pointer"
+            onClick={() => {
+              name.current.value = "Ananay Mahajan";
+              email.current.value = "ananay10@gmail.com";
+              password.current.value = "An@12345";
+            }}
+          >
+            🗝️Demo Credentials
+          </span> */}
+        </div>
         {/* if it is a signup form then only show name input box otherwise don't */}
         {!isSignInForm && (
           <input
@@ -128,12 +140,15 @@ const Login = () => {
         {/* to show the error msg if valid data is not inputted or is not an authorized user */}
         <p className="text-red-500 font-bold text-lg py-2">{errorMessage}</p>
         <button
-          className="p-4 my-6 bg-red-700 w-full rounded-lg"
+          className="p-4 my-6 bg-red-700 w-full rounded-lg hover:bg-red-600"
           onClick={handleButtonClick}
         >
           {isSignInForm ? "Sign In" : "Sign Up"}
         </button>
-        <p className="py-4 cursor-pointer" onClick={toggleSignInForm}>
+        <p
+          className="py-4 cursor-pointer hover:text-slate-400"
+          onClick={toggleSignInForm}
+        >
           {isSignInForm
             ? "New to Netflix? Sign Up Now"
             : "Already registered? Sign In Now."}
