@@ -11,7 +11,7 @@ const VideoBackground = ({ movieId }) => {
   useMovieTrailer(movieId);
 
   return (
-    <div className=" w-screen">
+    <div className="">
       {/* this is the embed code from youtube to get video of particular key(this is unique to every vido)
      inside my component */}
       <iframe
