@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import Header from "./Header";
 import { checkValidData } from "../utils/validate";
 import {
@@ -15,17 +15,18 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [userDetails, setUserDetails] = useState({
+    name: null,
+    email: null,
+    password: null,
+  });
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const name = useRef(null);
-  const email = useRef(null);
-  const password = useRef(null);
 
   //on clicking submit button vaidation and authentication must be done and respective
   // thing or error should be shown
   const handleButtonClick = () => {
-    const message = checkValidData(email.current.value, password.current.value);
+    const message = checkValidData(userDetails.email, userDetails.password);
     setErrorMessage(message);
     if (message) return; //if msg is null means go forward and authenticate
     //                      otherwise the email and/or password was not valid
@@ -34,13 +35,13 @@ const Login = () => {
       // Sign Up Logic
       createUserWithEmailAndPassword(
         auth,
-        email.current.value,
-        password.current.value
+        userDetails.email,
+        userDetails.password
       )
         .then((userCredential) => {
           const user = userCredential.user;
           updateProfile(user, {
-            displayName: name.current.value,
+            displayName: userDetails.name,
             photoURL: USER_AVATAR,
           })
             .then(() => {
@@ -60,31 +61,28 @@ const Login = () => {
             });
         })
         .catch((error) => {
-          const errorCode = error.code;
+          // const errorCode = error.code;  //used it earlier but not needed both are same
           const errorMessage = error.message;
-          setErrorMessage(errorCode + "-" + errorMessage);
+          setErrorMessage(errorMessage);
         });
     } else {
       // Sign In Logic
-      signInWithEmailAndPassword(
-        auth,
-        email.current.value,
-        password.current.value
-      )
+      signInWithEmailAndPassword(auth, userDetails.email, userDetails.password)
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
           navigate("/browse");
         })
         .catch((error) => {
-          const errorCode = error.code;
+          //const errorCode = error.code;  //used it earlier but not needed both are same
           const errorMessage = error.message;
-          setErrorMessage(errorCode + "-" + errorMessage);
+          setErrorMessage(errorMessage);
         });
     }
   };
 
   const toggleSignInForm = () => {
+    setErrorMessage(null);
     setIsSignInForm(!isSignInForm);
   };
   return (
@@ -105,42 +103,68 @@ const Login = () => {
           <h1 className="font-bold text-3xl py-3">
             {isSignInForm ? "Sign In" : "Sign Up"}
           </h1>
-          {/* <span
-            className="py-5 hover:text-yellow-100 cursor-pointer"
-            onClick={() => {
-              name.current.value = "Ananay Mahajan";
-              email.current.value = "ananay10@gmail.com";
-              password.current.value = "An@12345";
-            }}
-          >
-            🗝️Demo Credentials
-          </span> */}
+          {isSignInForm && (
+            <span
+              className="py-5 hover:text-yellow-100 cursor-pointer"
+              onClick={() => {
+                setErrorMessage(null);
+                setUserDetails({
+                  name: "Ananay Mahajan",
+                  email: "ananay10@gmail.com",
+                  password: "An@12345",
+                });
+              }}
+            >
+              🗝️Demo Credentials
+            </span>
+          )}
         </div>
         {/* if it is a signup form then only show name input box otherwise don't */}
         {!isSignInForm && (
           <input
-            ref={name}
+            onChange={(e) => {
+              setErrorMessage(null);
+              setUserDetails({
+                ...userDetails,
+                name: e.target.value,
+              });
+            }}
+            value={userDetails.name}
             type="text"
             placeholder="Full Name"
             className="p-4 my-4 w-full bg-gray-700 bg-opacity-80"
           />
         )}
         <input
-          ref={email}
+          onChange={(e) => {
+            setErrorMessage(null);
+            setUserDetails({
+              ...userDetails,
+              email: e.target.value,
+            });
+          }}
+          value={userDetails.email}
           type="text"
           placeholder="Email Address"
           className="p-4 my-4 w-full bg-gray-700 bg-opacity-80"
         />
         <input
-          ref={password}
+          onChange={(e) => {
+            setErrorMessage(null);
+            setUserDetails({
+              ...userDetails,
+              password: e.target.value,
+            });
+          }}
+          value={userDetails.password}
           type="password"
           placeholder="Password"
           className="p-4 my-4 w-full bg-gray-700 bg-opacity-80"
         />
         {/* to show the error msg if valid data is not inputted or is not an authorized user */}
-        <p className="text-red-500 font-bold text-lg py-2">{errorMessage}</p>
+        <p className="text-red-500 font-bold pt-2">{errorMessage}</p>
         <button
-          className="p-4 my-6 bg-red-700 w-full rounded-lg hover:bg-red-600"
+          className="p-4 my-5 bg-red-700 w-full rounded-lg hover:bg-red-600"
           onClick={handleButtonClick}
         >
           {isSignInForm ? "Sign In" : "Sign Up"}
