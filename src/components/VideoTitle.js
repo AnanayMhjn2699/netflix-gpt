@@ -9,10 +9,10 @@ const VideoTitle = ({ title, overview, movieId }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   return (
-    <div className="w-screen aspect-video pt-[15%] px-6 pl-20 md:px-24 absolute text-white bg-gradient-to-r from-black">
+    <div className="aspect-video pt-[15%] px-6 pl-20 md:px-24 absolute text-white bg-gradient-to-r from-black">
       <h1 className="text-2xl md:text-6xl">{title}</h1>
-      <p className="hidden md:inline-block py-6 text-lg w-1/2">{overview}</p>
-      <div className="my-4 md:m-0">
+      <p className="hidden xl:inline-block py-6 text-lg w-1/2">{overview}</p>
+      <div className="my-4 xl:m-0">
         <button
           onClick={() => {
             dispatch(addClickedMovieId(movieId));
