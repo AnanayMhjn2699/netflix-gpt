@@ -15,7 +15,7 @@ const VideoBackground = ({ movieId }) => {
       {/* this is the embed code from youtube to get video of particular key(this is unique to every vido)
      inside my component */}
       <iframe
-        className="w-screen aspect-video"
+        className="w-full aspect-video"
         src={
           "https://www.youtube.com/embed/" +
           trailerVideo?.key +
