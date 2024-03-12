@@ -1,6 +1,7 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Browse from "./Browse";
 import Login from "./Login";
+import PlayTrailer from "./PlayTrailer";
 
 const Body = () => {
   //routes to go to respective page
@@ -12,6 +13,10 @@ const Body = () => {
     {
       path: "/browse",
       element: <Browse />,
+    },
+    {
+      path: "/movie",
+      element: <PlayTrailer />,
     },
   ]);
   return (
