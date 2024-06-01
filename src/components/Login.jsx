@@ -86,26 +86,25 @@ const Login = () => {
     setIsSignInForm(!isSignInForm);
   };
   return (
-    <div>
+    <div >
       <Header />
-      <div className="absolute">
+      
         <img
-          className="h-screen md:h-full object-cover"
+          className="fixed h-screen md:w-screen object-cover"
           src={BG_URL}
           alt="logo"
         />
-      </div>
       <form
         onSubmit={(e) => e.preventDefault()}
-        className="w-full md:w-3/12 absolute p-4 bg-black my-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80"
+        className="w-full md:w-6/12 xl:w-4/12 absolute p-4 bg-black my-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80"
       >
         <div className="flex justify-between">
-          <h1 className="font-bold text-3xl py-3">
+          <h1 className="font-bold text-xl lg:text-4xl py-3">
             {isSignInForm ? "Sign In" : "Sign Up"}
           </h1>
           {isSignInForm && (
             <span
-              className="py-5 hover:text-yellow-100 cursor-pointer"
+              className="py-5 md:ml-10 lg:ml-0 hover:text-yellow-100 cursor-pointer"
               onClick={() => {
                 setErrorMessage(null);
                 setUserDetails({
