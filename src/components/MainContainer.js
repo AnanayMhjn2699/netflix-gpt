@@ -16,7 +16,7 @@ const MainContainer = () => {
   //to get the required data
 
   return (
-    <div className="pt-[30%] bg-black md:pt-0">
+    <div className="pt-[30%] md:pt-[5%] md-only:pt-[17%] bg-black">
       <VideoTitle title={original_title} overview={overview} movieId={id} />
       <VideoBackground movieId={id} />
     </div>
